@@ -36,9 +36,3 @@ type BookingList struct { //структура для ,бронирования 
 	Hour  int `json:"hour"` //час начала брони
 }
 */
-
-type UsersList struct { // структура пользователей
-	Id    int    `json:"id"`
-	Name  string `json:"name"`
-	Phone string `json:"phone"`
-}
