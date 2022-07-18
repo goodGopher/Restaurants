@@ -1,5 +1,7 @@
 package repository
 
+import "github.com/jmoiron/sqlx"
+
 type Restaurant interface {
 }
 
@@ -11,6 +13,6 @@ type Repos struct {
 	Booking
 }
 
-func NewRepository() *Repos {
+func NewRepository(db *sqlx.DB) *Repos {
 	return &Repos{}
 }
