@@ -42,7 +42,7 @@ func main() {
 	handler := handler.NewHandler(service)
 
 	srv := new(Restaurants.Server)
-	if err := srv.Run("8000", handler.InitRoutes()); err != nil {
+	if err := srv.Run(viper.GetString("port"), handler.InitRoutes()); err != nil {
 		log.Fatalf("error running server: %s", err.Error())
 	}
 }

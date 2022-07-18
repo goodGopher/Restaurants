@@ -2,7 +2,7 @@ package Restaurants
 
 type RestaurantsList struct { //структура всех ресторанов
 	Id   int    `json:"id"`
-	Name string `json:"name"` //название ресторана
+	Name string `json:"name" binding:"required"` //название ресторана
 }
 
 type RestaurantsTables struct { // структура для связи столиков и ресторанов
