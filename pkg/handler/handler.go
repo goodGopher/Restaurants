@@ -18,37 +18,46 @@ func (h *Handler) InitRoutes() *gin.Engine {
 
 	api := router.Group("/api")
 	{
-
-		rests := api.Group("/rests")
+		booking := router.Group("/booking")
 		{
-			rests.POST("/", h.createNewRest)       // ++ создание нового ресторана
-			rests.GET("/", h.getAllFreeRests)      // получение списка всех ресторанов в которых есть свободные места с учетом условий
-			rests.GET("/:id", h.getRestById)       // ++ получение имени конкретного ресторана по id
-			rests.PUT("/:id", h.updateRestById)    // обновление имени конкретного ресторана по id
-			rests.DELETE("/:id", h.deleteRestById) // удаление конкретного ресторана по id
+			booking.POST("/", h.createNewBooking) //создание брони в ресторане
+			//booking.GET("/")                            //получение информации о всех бронированиях в ресторане
+			booking.GET("/:id", h.getBookingById)       //получение информации о конкретном бронировании в ресторане
+			booking.PUT("/:id", h.updateBookingById)    //обновление информации о конкретном бронировании в ресторане
+			booking.DELETE("/:id", h.deleteBookingById) //удаление информации о конкретном бронировании в ресторане
+		}
 
-			rests.GET("/all", h.getAllRests)                     // ++ получение списка всех ресторанов
-			rests.GET("/sortedByTime", h.getSortedByTimeRests)   // ++ сортировка подходящих ресторанов по ср.времени ожидания
-			rests.GET("/sortedByCheck", h.getSortedByCheckRests) // ++ сортировка подходящих ресторанов по ср.чеку
+		restsActions := api.Group("/resAct")
+		{
+			restsActions.POST("/", h.createNewRest)       // ++ создание нового ресторана
+			restsActions.GET("/", h.getAllFreeRests)      // получение списка всех ресторанов в которых есть свободные места с учетом условий
+			restsActions.GET("/:id", h.getRestById)       // ++ получение имени конкретного ресторана по id
+			restsActions.PUT("/:id", h.updateRestById)    // обновление имени конкретного ресторана по id
+			restsActions.DELETE("/:id", h.deleteRestById) // ?? удалить столы ++ удаление конкретного ресторана по id
 
-			/*tables := rests.Group(":id/tables")
+			tablesActions := restsActions.Group(":id/tabAct")
 			{
-				tables.POST("/")      //создание нового стола в ресторане
-				tables.GET("/")       // вывод количества столов и свободных мест в ресторане
-				tables.GET("/:id")    // получение информации о конкретном типе столов в ресторане
-				tables.PUT("/:id")    // обновление информации о конкретном типе столов в ресторане
-				tables.DELETE("/:id") // удаление конкретного типа столов в ресторане
-			}
-			*/
-			booking := rests.Group(":id/booking")
-			{
-				booking.POST("/", h.createNewBooking) //создание брони в ресторане
-				//booking.GET("/")                            //получение информации о всех бронированиях в ресторане
-				booking.GET("/:id", h.getBookingById)       //получение информации о конкретном бронировании в ресторане
-				booking.PUT("/:id", h.updateBookingById)    //обновление информации о конкретном бронировании в ресторане
-				booking.DELETE("/:id", h.deleteBookingById) //удаление информации о конкретном бронировании в ресторане
+				tablesActions.POST("/", h.createNewTable)             // создание нового типа столов в ресторане
+				tablesActions.GET("/:tab_id", h.getTablesTypeById)    // получение информации о конкретном типе столов в ресторане
+				tablesActions.PUT("/:tab_id", h.updateTablesTypeById) // обновление информации о конкретном типе столов в ресторане
+				tablesActions.DELETE("/:tab_id", h.delTablesTypeById) // удаление конкретного типа столов в ресторане
 			}
 		}
+
+		restsInfo := api.Group("/resInf")
+		{
+			restsInfo.GET("/all", h.getAllRests)                     // ++ получение списка всех ресторанов
+			restsInfo.GET("/sortedByTime", h.getSortedByTimeRests)   // ++ сортировка подходящих ресторанов по ср.времени ожидания
+			restsInfo.GET("/sortedByCheck", h.getSortedByCheckRests) // ++ сортировка подходящих ресторанов по ср.чеку
+
+			tablesInfo := restsInfo.Group(":id/tabInf")
+			{
+				tablesInfo.GET("/allTables", h.getAllTablesInRest) // ++ вывод количества столов
+				tablesInfo.GET("/allPlaces", h.getAllPlacesInRest) // ++ вывод количества  свободных мест в ресторане
+			}
+
+		}
+
 	}
 	return router
 }

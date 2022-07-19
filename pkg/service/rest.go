@@ -32,3 +32,7 @@ func (r *RestService) GetSortedByCheckRestsService() ([]Restaurants.RestaurantsL
 func (r *RestService) GetRestByIdService(id int) (Restaurants.RestaurantsList, error) {
 	return r.repo.GetRestByIdRepo(id)
 }
+
+func (r *RestService) DelRestByIdService(id int) error {
+	return r.repo.DelRestByIdRepo(id)
+}

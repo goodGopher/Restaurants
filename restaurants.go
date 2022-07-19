@@ -9,22 +9,22 @@ type RestaurantsList struct { //структура всех ресторанов
 
 type RestaurantsTables struct { // структура для связи столиков и ресторанов
 	Id           int `json:"id"`
-	RestaurantId int `json:"restaurantId"`
-	TableId      int `json:"tableId"`
+	RestaurantId int `json:"restaurant_id" db:"restaurant_id" `
+	TableId      int `json:"table_id" db:"table_id"`
 }
 
 type TableList struct { //структура всех столиков в ресторане
-	Id         int `json:"id"`
-	TableNum   int `json:"tableNum"`    // количество столов в ресторане
-	MaxPersons int `json:"max_persons"` // максимальное число людей за столом
-	FreeTables int `json:"free_tables"` // количество свободных столов
+	Id         int `json:"id" db:"id"`
+	TableNum   int `json:"table_num" db:"table_num"`     // количество столов в ресторане
+	MaxPersons int `json:"max_persons" db:"max_persons"` // максимальное число людей за столом
+	FreeTables int `json:"free_tables" db:"free_tables"` // количество свободных столов
 }
 
 type BookingList struct { //структура для ,бронирования (связи столиков и пользователей)
-	Id          int    `json:"id"`
-	TableId     int    `json:"table_id"`
-	UserId      int    `json:"user_id"`
-	TableNum    int    `json:"table_num"` //количество забронированных столов одного типа в данном ресторане
-	BookingDate string `json:"booking_date"`
-	BookingTime string `json:"booking_time"`
+	Id          int    `json:"id" db:"id"`
+	TableId     int    `json:"table_id" db:"table_id"`
+	UserId      int    `json:"user_id" db:"user_id"`
+	TableNum    int    `json:"table_num" db:"table_num"` //количество забронированных столов одного типа в данном ресторане
+	BookingDate string `json:"booking_date" db:"booking_date"`
+	BookingTime string `json:"booking_time" db:"booking_time"`
 }

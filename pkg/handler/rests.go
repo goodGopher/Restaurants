@@ -9,16 +9,9 @@ import (
 	"github.com/goodGopher/Restaurants"
 )
 
-type getRestsResponse struct { //дополнительная структура для вывода списка ресторанов
-	Data []Restaurants.RestaurantsList `json:"data"`
-}
-type getOneRestResponse struct { //дополнительная структура для вывода списка ресторанов
-	Data Restaurants.RestaurantsList `json:"data"`
-}
-
 func (h *Handler) createNewRest(c *gin.Context) {
-	var input Restaurants.RestaurantsList      //возможен провал
-	if err := c.BindJSON(&input); err != nil { //
+	var input Restaurants.RestaurantsList
+	if err := c.BindJSON(&input); err != nil {
 		log.Fatalf("error rest parameters: %s", err.Error())
 		return
 	}
@@ -40,7 +33,7 @@ func (h *Handler) getAllFreeRests(c *gin.Context) {
 
 func (h *Handler) getRestById(c *gin.Context) {
 
-	id, err := strconv.Atoi(c.Param("id"))
+	id, err := strconv.Atoi(c.Param("id")) //получаем id из строки запроса
 	if err != nil {
 		log.Fatalf("error rest id: %s", err.Error())
 		return
@@ -63,6 +56,21 @@ func (h *Handler) updateRestById(c *gin.Context) {
 }
 
 func (h *Handler) deleteRestById(c *gin.Context) {
+	id, err := strconv.Atoi(c.Param("id")) //получаем id из строки запроса
+	if err != nil {
+		log.Fatalf("error rest id: %s", err.Error())
+		return
+	}
+
+	err = h.service.DelRestByIdService(id)
+	if err != nil {
+		log.Fatalf("error DelRestByIdService: %s", err.Error())
+		return
+	}
+
+	c.JSON(http.StatusOK, Status{
+		Status: "ok",
+	})
 
 }
 

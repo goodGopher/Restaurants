@@ -11,6 +11,13 @@ type Restaurant interface {
 	GetSortedByTimeRestsService() ([]Restaurants.RestaurantsList, error)
 	GetSortedByCheckRestsService() ([]Restaurants.RestaurantsList, error)
 	GetRestByIdService(id int) (Restaurants.RestaurantsList, error)
+	DelRestByIdService(id int) error
+}
+
+type Tables interface {
+	CreateNewTableService(table Restaurants.TableList, rest_id int) (int, error)
+	GetFreeTablesService(rest_id int) ([]Restaurants.TableList, error)
+	GetFreePlacesService(rest_id int) (int, int, int, error)
 }
 
 type Booking interface {
@@ -18,11 +25,13 @@ type Booking interface {
 
 type Service struct {
 	Restaurant
+	Tables
 	Booking
 }
 
 func NewService(repos *repository.Repos) *Service {
 	return &Service{
 		Restaurant: NewRestService(repos),
+		Tables:     NewTableService(repos),
 	}
 }

@@ -56,3 +56,10 @@ func (r *RestRepo) GetRestByIdRepo(id int) (Restaurants.RestaurantsList, error) 
 
 	return restById, err
 }
+
+func (r *RestRepo) DelRestByIdRepo(id int) error {
+	query := fmt.Sprintf("DELETE FROM %s WHERE id= $1", restaurantsList)
+	_, err := r.db.Exec(query, &id)
+
+	return err
+}
