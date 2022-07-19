@@ -7,6 +7,10 @@ import (
 
 type Restaurant interface {
 	CreateRestRepo(restaurant Restaurants.RestaurantsList) (int, error)
+	GetAllRestsRepo() ([]Restaurants.RestaurantsList, error)
+	GetSortedByTimeRestsRepo() ([]Restaurants.RestaurantsList, error)
+	GetSortedByCheckRestsRepo() ([]Restaurants.RestaurantsList, error)
+	GetRestByIdRepo(id int) (Restaurants.RestaurantsList, error)
 }
 
 type Booking interface {

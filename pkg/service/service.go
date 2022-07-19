@@ -7,6 +7,10 @@ import (
 
 type Restaurant interface {
 	CreateRestService(input Restaurants.RestaurantsList) (int, error)
+	GetAllRestsService() ([]Restaurants.RestaurantsList, error)
+	GetSortedByTimeRestsService() ([]Restaurants.RestaurantsList, error)
+	GetSortedByCheckRestsService() ([]Restaurants.RestaurantsList, error)
+	GetRestByIdService(id int) (Restaurants.RestaurantsList, error)
 }
 
 type Booking interface {

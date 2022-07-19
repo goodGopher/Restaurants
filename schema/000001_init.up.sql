@@ -1,6 +1,8 @@
 CREATE TABLE restaurants_list (
     id serial NOT NULL unique,
-    rest_name varchar (255) NOT NULL
+    rest_name varchar (255) NOT NULL,
+    av_time TIME NOT NULL,
+    av_check int NOT NULL
 );
 
 CREATE TABLE user_list (
@@ -27,5 +29,6 @@ CREATE TABLE booking_list (
     table_id int NOT NULL,
     users_id int  NOT NULL,
     table_num int NOT NULL,
-    booking_time varchar(255) NOT NULL
+    booking_date DATE NOT NULL,
+    booking_time TIME NOT NULL
 );
