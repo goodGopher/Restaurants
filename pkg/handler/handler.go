@@ -22,15 +22,15 @@ func (h *Handler) InitRoutes() *gin.Engine {
 		{
 			booking.POST("/", h.createNewBooking) // ?? создание брони в ресторане
 			//booking.GET("/")                            //получение информации о всех бронированиях в ресторане
-			booking.GET("/:id", h.getBookingById)       //получение информации о конкретном бронировании в ресторане
-			booking.PUT("/:id", h.updateBookingById)    //обновление информации о конкретном бронировании в ресторане
-			booking.DELETE("/:id", h.deleteBookingById) //удаление информации о конкретном бронировании в ресторане
+		//	booking.GET("/:id", h.getBookingById)       //получение информации о конкретном бронировании в ресторане
+		//	booking.PUT("/:id", h.updateBookingById)    //обновление информации о конкретном бронировании в ресторане
+		//	booking.DELETE("/:id", h.deleteBookingById) //удаление информации о конкретном бронировании в ресторане
 		}
 
 		restsActions := api.Group("/resAct")
 		{
 			restsActions.POST("/", h.createNewRest)       // ++ создание нового ресторана
-			restsActions.GET("/", h.getAllFreeRests)      // получение списка всех ресторанов в которых есть свободные места с учетом условий
+		//	restsActions.GET("/", h.getAllFreeRests)      // получение списка всех ресторанов в которых есть свободные места с учетом условий
 			restsActions.GET("/:id", h.getRestById)       // ++ получение имени конкретного ресторана по id
 			restsActions.PUT("/:id", h.updateRestById)    // обновление имени конкретного ресторана по id
 			restsActions.DELETE("/:id", h.deleteRestById) // ?? удалить столы ++ удаление конкретного ресторана по id
@@ -39,7 +39,7 @@ func (h *Handler) InitRoutes() *gin.Engine {
 			{
 				tablesActions.POST("/", h.createNewTable) // ++ создание нового типа столов в ресторане
 				//	tablesActions.GET("/:peop_num", h.getTablesTypeByNum)    // получение информации о конкретном типе столов в ресторане
-				tablesActions.PUT("/:tab_id", h.updateTablesTypeById) // обновление информации о конкретном типе столов в ресторане
+			//	tablesActions.PUT("/:tab_id", h.updateTablesTypeById) // обновление информации о конкретном типе столов в ресторане
 				//	tablesActions.DELETE("/:peop_num", h.delTablesTypeByNum) // удаление конкретного типа столов в ресторане
 			}
 		}
