@@ -28,3 +28,12 @@ type BookingList struct { //структура для ,бронирования 
 	BookingDate string `json:"booking_date" db:"booking_date"`
 	BookingTime string `json:"booking_time" db:"booking_time"`
 }
+
+type BookingRequest struct { // структура для получения запроса на бронирование
+	RestName    string `json:"rest_name" db:"rest_name"`
+	PeopNum     int    `json:"peop_num" db:"peop_num"`
+	UserName    string `json:"user_name" db:"user_name"`
+	UserPhone   string `json:"user_phone" db:"user_phone"`
+	BookingDate string `json:"booking_date" db:"booking_date"`
+	BookingTime string `json:"booking_time" db:"booking_time"`
+}

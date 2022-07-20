@@ -24,3 +24,8 @@ type FreePlaces struct {
 	SumTableNum   int `json:"sum_table_num"`
 	SumMaxPersons int `json:"sum_max_persons"`
 }
+
+//Booking responses
+type BookingResponse struct {
+	ids []int
+}

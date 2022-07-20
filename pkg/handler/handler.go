@@ -20,7 +20,7 @@ func (h *Handler) InitRoutes() *gin.Engine {
 	{
 		booking := router.Group("/booking")
 		{
-			booking.POST("/", h.createNewBooking) //создание брони в ресторане
+			booking.POST("/", h.createNewBooking) // ?? создание брони в ресторане
 			//booking.GET("/")                            //получение информации о всех бронированиях в ресторане
 			booking.GET("/:id", h.getBookingById)       //получение информации о конкретном бронировании в ресторане
 			booking.PUT("/:id", h.updateBookingById)    //обновление информации о конкретном бронировании в ресторане
@@ -37,10 +37,10 @@ func (h *Handler) InitRoutes() *gin.Engine {
 
 			tablesActions := restsActions.Group(":id/tabAct")
 			{
-				tablesActions.POST("/", h.createNewTable)             // создание нового типа столов в ресторане
-				tablesActions.GET("/:tab_id", h.getTablesTypeById)    // получение информации о конкретном типе столов в ресторане
+				tablesActions.POST("/", h.createNewTable) // ++ создание нового типа столов в ресторане
+				//	tablesActions.GET("/:peop_num", h.getTablesTypeByNum)    // получение информации о конкретном типе столов в ресторане
 				tablesActions.PUT("/:tab_id", h.updateTablesTypeById) // обновление информации о конкретном типе столов в ресторане
-				tablesActions.DELETE("/:tab_id", h.delTablesTypeById) // удаление конкретного типа столов в ресторане
+				//	tablesActions.DELETE("/:peop_num", h.delTablesTypeByNum) // удаление конкретного типа столов в ресторане
 			}
 		}
 

@@ -21,6 +21,7 @@ type Tables interface {
 }
 
 type Booking interface {
+	CreateBookingService(bookingReq Restaurants.BookingRequest) ([]int, error)
 }
 
 type Service struct {

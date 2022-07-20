@@ -20,6 +20,9 @@ type Tables interface {
 	GetFreePlacesRepo(rest_id int) (int, int, int, error)
 }
 type Booking interface {
+	CheckTablesIdsRepo(RestName string, PeopNum int) (map[int]int, error)
+	CreateUserForBookingRepo(UserName string, UserPhone string) (int, error)
+	CreateBookingRepo(BkList Restaurants.BookingList) (int, error)
 }
 
 type Repos struct {
@@ -32,5 +35,6 @@ func NewRepository(db *sqlx.DB) *Repos {
 	return &Repos{
 		Restaurant: NewRestRepo(db),
 		Tables:     NewTableRepo(db),
+		Booking:    NewBookingRepo(db),
 	}
 }
